@@ -1,38 +1,35 @@
 <?php
-
-/**
- * Provide a public-facing view for the plugin
- *
- * This file is used to markup the public-facing aspects of the plugin.
- *
- * @link       https://linktr.ee/armancs
- * @since      1.0.0
- *
- * @package    Btk_Wp_Hero_Slider
- * @subpackage Btk_Wp_Hero_Slider/public/partials
- */
+// $slider_data = get_post((int)$atts['sliderid']);
+$slider_data = get_post_meta((int)$atts['sliderid'], 'btk_all_slider_data', true);
+$sliders = json_decode(stripslashes($slider_data), false);
+$site_logo = get_theme_mod('custom_logo');
+$site_logo_img = wp_get_attachment_image_src($site_logo, 'full');
+$site_logo_img_url = $site_logo_img[0];
+global $ef_options;
+$es_logo_attachment_id = $ef_options->get( 'logo_attachment_id' );
+$es_site_logo_img = wp_get_attachment_image_src($es_logo_attachment_id, 'full')[0];
+if (!empty($sliders)) :
 ?>
-
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
-<div class="bootstrap">
-    <div class="btk-hero-slider">
-        <div>
-            <h3>1</h3>
+    <section class="btk-wp-slider">
+        <div class="btk-hero-slider">
+            <?php foreach ($sliders as $slider) : ?>
+                <div class="btk-position-relative btk-slider-item">
+                    <img class="btk-w-100" src="<?php echo wp_get_attachment_image_url((int)$slider->slider_image, 'full'); ?>" class="btk-preview-img">
+                    <div class="btk-overlay"></div>
+                    <div class="btk-position-absolute btk-slider-title-button">
+                        <div class="btk-logo">
+                            <img src="<?php echo (!empty($site_logo_img_url)) ? $site_logo_img_url : $es_site_logo_img; ?>" alt="">
+                        </div>
+                        <h1 class="btk-text-white"><?php echo $slider->slider_title; ?></h1>
+                        <div class="btk-download-btn">
+                            <button type="button" class="btk-btn btk-btn-primary"><i class="fa fa-download"></i><?php echo $slider->slider_btn_text; ?></button>
+                        </div>
+                    </div>
+                    <div class="btk-position-absolute btk-slider-overlay-img">
+                        <img src="<?php echo wp_get_attachment_image_url((int)$slider->slider_overlay_image, 'full'); ?>" alt="">
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
-        <div>
-            <h3>2</h3>
-        </div>
-        <div>
-            <h3>3</h3>
-        </div>
-        <div>
-            <h3>4</h3>
-        </div>
-        <div>
-            <h3>5</h3>
-        </div>
-        <div>
-            <h3>6</h3>
-        </div>
-    </div>
-</div>
+    </section>
+<?php endif;

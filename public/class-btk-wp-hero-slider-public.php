@@ -77,6 +77,7 @@ class Btk_Wp_Hero_Slider_Public
 		wp_enqueue_style($this->plugin_name . '-bootstrap-style', plugin_dir_url(plugin_dir_path(__FILE__))  . 'assets/bootstrap/css/bootstrap.min.css', array(), $this->version, 'all');
 		wp_enqueue_style($this->plugin_name . '-slick-css', plugin_dir_url(plugin_dir_path(__FILE__))  . 'assets/slick/slick.css', array(), $this->version, 'all');
 		wp_enqueue_style($this->plugin_name . '-slick-theme-css', plugin_dir_url(plugin_dir_path(__FILE__))  . 'assets/slick/slick-theme.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name . '-font-awesome-css', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css', array(), $this->version, 'all');
 		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/btk-wp-hero-slider-public.css', array(), $this->version, 'all');
 	}
 
@@ -109,8 +110,8 @@ class Btk_Wp_Hero_Slider_Public
 
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/btk-wp-hero-slider-public.js', array('jquery'), $this->version, false);
 	}
-	
-	public function btk_wp_hero_slider()
+
+	public function btk_wp_hero_slider($atts)
 	{
 		ob_start();
 		include_once('partials/btk-wp-hero-slider-public-display.php');

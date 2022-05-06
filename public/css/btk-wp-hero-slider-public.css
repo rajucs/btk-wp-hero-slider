@@ -2,3 +2,154 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,600;1,300&display=swap');
+
+.btk-wp-slider .slick-prev {
+    left: 25px;
+    z-index: 9;
+}
+
+.btk-wp-slider .slick-next {
+    right: 25px;
+}
+
+.btk-wp-slider .slick-dots {
+    width: auto;
+    right: 0;
+    bottom: 20px;
+}
+
+.btk-wp-slider .btk-w-100 {
+    width: 100%;
+}
+
+.btk-wp-slider .slick-dots li button:before {
+    color: #fff;
+    font-size: 15px;
+}
+
+.btk-wp-slider .btk-position-relative {
+    position: relative;
+}
+
+.btk-wp-slider .btk-position-absolute {
+    position: absolute;
+}
+
+.btk-wp-slider .btk-slider-title-button {
+    bottom: 10%;
+    left: 15%;
+    width: 50%;
+}
+
+.btk-wp-slider .btk-slider-title-button h1 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 42px;
+    font-weight: 600;
+    line-height: 1.2em;
+}
+
+.btk-wp-slider .btk-download-btn button {
+    font-family: "Raleway", Sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    fill: #fff;
+    color: #fff;
+    background-color: rgba(76, 175, 80, 0);
+    border-style: solid;
+    border-width: 2px 2px 2px 2px;
+    border-color: #fff;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0px 0px 4px 0px rgb(0 0 0 / 29%);
+    padding: 8px 25px 8px 25px;
+}
+
+.btk-wp-slider .dashicons-download {
+    font-size: 16px;
+}
+
+.btk-text-white {
+    color: #fff !important;
+}
+
+.btk-wp-slider .btk-slider-overlay-img {
+    position: absolute;
+    bottom: -3px;
+    width: 35%;
+    left: 50%;
+}
+
+.btk-wp-slider .btk-slider-overlay-img img {
+    width: 100%;
+}
+
+.btk-wp-slider .btk-logo img {
+    width: 150px;
+}
+
+.btk-wp-slider .btk-btn {
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.btk-wp-slider .btk-btn-primary {
+    color: #fff;
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.btk-wp-slider .btk-overlay {
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    clear: float;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #ffffff; */
+}
+
+@media screen and (max-width: 767px) {
+    .btk-wp-slider .btk-download-btn button {
+        padding: 5px 10px 5px 10px;
+    }
+    .btk-wp-slider .btk-slider-title-button h1 {
+        font-size: 16px;
+    }
+    .btk-wp-slider .btk-logo img {
+        width: 85px;
+    }
+    .btk-wp-slider .slick-prev{
+        left: 5px;
+    }
+    .btk-wp-slider .slick-next{
+        right: 5px;
+    }
+    .btk-wp-slider .btk-slider-item{
+        height: 400px;
+    }
+    .btk-wp-slider .btk-slider-item img{
+        height: 100%;
+    }
+    .btk-wp-slider .btk-slider-overlay-img {
+        position: absolute;
+        bottom: -3px;
+        width: 59%;
+        left: 45%;
+    }
+}
