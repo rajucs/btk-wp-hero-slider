@@ -20,7 +20,8 @@
  * @subpackage Btk_Wp_Hero_Slider/public
  * @author     Arman H <bluetekbd@gmail.com>
  */
-class Btk_Wp_Hero_Slider_Public {
+class Btk_Wp_Hero_Slider_Public
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,11 +48,11 @@ class Btk_Wp_Hero_Slider_Public {
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
@@ -59,7 +60,8 @@ class Btk_Wp_Hero_Slider_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -72,9 +74,10 @@ class Btk_Wp_Hero_Slider_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/btk-wp-hero-slider-public.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style($this->plugin_name . '-bootstrap-style', plugin_dir_url(plugin_dir_path(__FILE__))  . 'assets/bootstrap/css/bootstrap.min.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name . '-slick-css', plugin_dir_url(plugin_dir_path(__FILE__))  . 'assets/slick/slick.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name . '-slick-theme-css', plugin_dir_url(plugin_dir_path(__FILE__))  . 'assets/slick/slick-theme.css', array(), $this->version, 'all');
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/btk-wp-hero-slider-public.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -82,7 +85,8 @@ class Btk_Wp_Hero_Slider_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -95,9 +99,23 @@ class Btk_Wp_Hero_Slider_Public {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		wp_enqueue_script('jquery');
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/btk-wp-hero-slider-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script($this->plugin_name . '-bootstrap-popper', plugin_dir_url(plugin_dir_path(__FILE__)) . 'assets/bootstrap/js/popper.min.js', array('jquery'), $this->version, false);
 
+		wp_enqueue_script($this->plugin_name . '-bootstrap-min', plugin_dir_url(plugin_dir_path(__FILE__)) . 'assets/bootstrap/js/bootstrap.min.js', array('jquery'), $this->version, false);
+
+		wp_enqueue_script($this->plugin_name . '-slick-min-js', plugin_dir_url(plugin_dir_path(__FILE__)) . 'assets/slick/slick.min.js', array('jquery'), $this->version, false);
+
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/btk-wp-hero-slider-public.js', array('jquery'), $this->version, false);
 	}
-
+	
+	public function btk_wp_hero_slider()
+	{
+		ob_start();
+		include_once('partials/btk-wp-hero-slider-public-display.php');
+		$content = ob_get_contents();
+		ob_end_clean();
+		return $content;
+	}
 }
