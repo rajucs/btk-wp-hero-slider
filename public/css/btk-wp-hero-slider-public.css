@@ -74,9 +74,9 @@
 
 .btk-wp-slider .btk-slider-overlay-img {
     position: absolute;
-    bottom: -3px;
-    width: 35%;
-    left: 50%;
+    bottom: -8px;
+    width: 25%;
+    left: 60%;
 }
 
 .btk-wp-slider .btk-slider-overlay-img img {
@@ -114,16 +114,18 @@
 }
 
 .btk-wp-slider .btk-overlay {
-    /* position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     clear: float;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: #ffffff; */
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #ffffff;
 }
-
+.btk-wp-slider .btk-slider-item{
+    height: 70vh;
+}
 @media screen and (max-width: 767px) {
     .btk-wp-slider .btk-download-btn button {
         padding: 5px 10px 5px 10px;

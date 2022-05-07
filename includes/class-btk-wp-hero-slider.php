@@ -27,7 +27,8 @@
  * @subpackage Btk_Wp_Hero_Slider/includes
  * @author     Arman H <bluetekbd@gmail.com>
  */
-class Btk_Wp_Hero_Slider {
+class Btk_Wp_Hero_Slider
+{
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -66,8 +67,9 @@ class Btk_Wp_Hero_Slider {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct() {
-		if ( defined( 'BTK_WP_HERO_SLIDER_VERSION' ) ) {
+	public function __construct()
+	{
+		if (defined('BTK_WP_HERO_SLIDER_VERSION')) {
 			$this->version = BTK_WP_HERO_SLIDER_VERSION;
 		} else {
 			$this->version = '1.0.0';
@@ -78,7 +80,6 @@ class Btk_Wp_Hero_Slider {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -97,40 +98,40 @@ class Btk_Wp_Hero_Slider {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function load_dependencies() {
+	private function load_dependencies()
+	{
 
 		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-btk-wp-hero-slider-loader.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-btk-wp-hero-slider-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-btk-wp-hero-slider-i18n.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-btk-wp-hero-slider-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-btk-wp-hero-slider-admin.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-btk-wp-hero-slider-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-btk-wp-hero-slider-public.php';
-		
+		require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-btk-wp-hero-slider-public.php';
+
 		/**
 		 * Load Widgets for hero slider
 		 * 
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'widgets/class-btk-wp-hero-slider-carousel.php';
+		require_once plugin_dir_path(dirname(__FILE__)) . 'widgets/class-btk-wp-hero-slider-carousel.php';
 
 		$this->loader = new Btk_Wp_Hero_Slider_Loader();
-
 	}
 
 	/**
@@ -142,12 +143,12 @@ class Btk_Wp_Hero_Slider {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function set_locale() {
+	private function set_locale()
+	{
 
 		$plugin_i18n = new Btk_Wp_Hero_Slider_i18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
+		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 	}
 
 	/**
@@ -157,16 +158,21 @@ class Btk_Wp_Hero_Slider {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_admin_hooks() {
+	private function define_admin_hooks()
+	{
 
-		$plugin_admin = new Btk_Wp_Hero_Slider_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Btk_Wp_Hero_Slider_Admin($this->get_plugin_name(), $this->get_version());
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 		$this->loader->add_action('init', $plugin_admin, 'bk_wp_hero_slider_post_types');
 		$this->loader->add_action('add_meta_boxes', $plugin_admin, 'btk_wp_hero_slider_meta_boxes');
 		$this->loader->add_action("save_post", $plugin_admin, "btk_wp_hero_slider_save_post", 10, 3);
-		$this->loader->add_action( 'widgets_init', $plugin_admin, 'btk_wp_hero_register_widgets' );
+		$this->loader->add_action('widgets_init', $plugin_admin, 'btk_wp_hero_register_widgets');
+
+		// manage clue table columns
+		$this->loader->add_filter('manage_bk-hero-slider_posts_columns', $plugin_admin, 'set_new_btk_hero_slider_post_custom_column');
+		$this->loader->add_action('manage_bk-hero-slider_posts_custom_column', $plugin_admin, 'btk_hero_slider_post_custom_column_value', 10, 2);
 	}
 
 	/**
@@ -176,13 +182,14 @@ class Btk_Wp_Hero_Slider {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_public_hooks() {
+	private function define_public_hooks()
+	{
 
-		$plugin_public = new Btk_Wp_Hero_Slider_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Btk_Wp_Hero_Slider_Public($this->get_plugin_name(), $this->get_version());
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_shortcode( 'btk-hero-slider', $plugin_public, 'btk_wp_hero_slider' );
+		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
+		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
+		$this->loader->add_shortcode('btk-hero-slider', $plugin_public, 'btk_wp_hero_slider');
 	}
 
 	/**
@@ -190,7 +197,8 @@ class Btk_Wp_Hero_Slider {
 	 *
 	 * @since    1.0.0
 	 */
-	public function run() {
+	public function run()
+	{
 		$this->loader->run();
 	}
 
@@ -201,7 +209,8 @@ class Btk_Wp_Hero_Slider {
 	 * @since     1.0.0
 	 * @return    string    The name of the plugin.
 	 */
-	public function get_plugin_name() {
+	public function get_plugin_name()
+	{
 		return $this->plugin_name;
 	}
 
@@ -211,7 +220,8 @@ class Btk_Wp_Hero_Slider {
 	 * @since     1.0.0
 	 * @return    Btk_Wp_Hero_Slider_Loader    Orchestrates the hooks of the plugin.
 	 */
-	public function get_loader() {
+	public function get_loader()
+	{
 		return $this->loader;
 	}
 
@@ -221,8 +231,8 @@ class Btk_Wp_Hero_Slider {
 	 * @since     1.0.0
 	 * @return    string    The version number of the plugin.
 	 */
-	public function get_version() {
+	public function get_version()
+	{
 		return $this->version;
 	}
-
 }

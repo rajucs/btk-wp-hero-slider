@@ -240,4 +240,25 @@ class Btk_Wp_Hero_Slider_Admin
 	{
 		register_widget('btk_wp_hero_slider_widget');
 	}
+
+		// Add the custom columns to the book post type:
+	public function set_new_btk_hero_slider_post_custom_column($columns)
+	{
+		unset($columns['date']);
+		$columns = array_merge($columns, array(
+			'shortcode' => __('Shortcode'),
+			'date' => __('Date')
+		));
+		return $columns;
+	}
+
+	// Add the data to the custom columns for the book post type:
+	public function btk_hero_slider_post_custom_column_value($column, $post_id)
+	{
+		switch ($column) {
+			case 'shortcode':
+				echo '[btk-hero-slider sliderid="'.$post_id.'"]';
+				break;
+		}
+	}
 }
