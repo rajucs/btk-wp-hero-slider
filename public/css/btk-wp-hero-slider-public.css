@@ -28,133 +28,324 @@
     font-size: 15px;
 }
 
-.btk-wp-slider .btk-position-relative {
-    position: relative;
+.bkt-wp-slider .row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y) * -1);
+    margin-right: calc(var(--bs-gutter-x) * -.5);
+    margin-left: calc(var(--bs-gutter-x) * -.5);
 }
 
-.btk-wp-slider .btk-position-absolute {
-    position: absolute;
+.align-items-start {
+    align-items: flex-start !important;
 }
 
-.btk-wp-slider .btk-slider-title-button {
-    bottom: 10%;
-    left: 15%;
-    width: 50%;
+.h-100 {
+    height: 100% !important;
 }
 
-.btk-wp-slider .btk-slider-title-button h1 {
+.position-relative {
+    position: relative !important;
+}
+
+@media (min-width: 1200px) {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .container,
+    .container-md,
+    .container-sm {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 576px) {
+
+    .container,
+    .container-sm {
+        max-width: 540px;
+    }
+}
+
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+.container-xxl {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, .75rem);
+    padding-left: var(--bs-gutter-x, .75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 768px) {
+    .btk-col-md-6 {
+        flex: 0 0 auto;
+        width: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+    .align-items-md-center {
+        align-items: center !important;
+    }
+}
+
+.hero-child {
+    /* background-image: url(http://localhost/anadelaida/wp-content/uploads/2022/04/pexels-binyamin-mellish-106399-scaled.jpg); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 700px;
+}
+
+/* #btk-wp-hero .hero-content {
+    padding-top: 210px;
+    padding-bottom: 210px;
+} */
+
+#btk-wp-hero .hero-content h1 {
+    font-size: 30px;
+    line-height: 35px;
+    font-weight: 700;
+    color: #27A2F8;
     font-family: 'Raleway', sans-serif;
+}
+
+#btk-wp-hero .hero-content .btk-wp-head-title {
+    color: #FFFFFF;
+    font-family: "Raleway", Sans-serif;
     font-size: 42px;
     font-weight: 600;
     line-height: 1.2em;
 }
 
-.btk-wp-slider .btk-download-btn button, 
-.btk-wp-slider .btk-download-btn a {
+.btk-text-white {
+    color: #fff;
+}
+
+#btk-wp-hero .hero-content p.pra-2 {
+    margin-top: 5px;
+}
+
+#btk-wp-hero .hero-content p.pra-3 {
+    font-weight: 500;
+}
+
+#btk-wp-hero .hero-content .btk-wp-head-title {
+    margin-top: 20px;
+}
+
+#btk-wp-hero .hero-content p.pra-3 {
+    margin-top: 12px;
+}
+
+#btk-wp-hero .hero-btn-parent {
+    display: flex;
+    margin-top: 24px;
+}
+
+#btk-wp-hero .btn-margin {
+    margin-left: 32px;
+}
+.btk-logo{
+    position: absolute;
+    top: 0;
+}
+.btk-logo img {
+    width: 150px;
+}
+.btk-btn{
     font-family: "Raleway", Sans-serif;
     font-size: 14px;
     font-weight: bold;
-    fill: #fff;
-    color: #fff;
-    background-color: rgba(76, 175, 80, 0);
+    fill: #FFFFFF;
+    background-color: #4CAF5000;
     border-style: solid;
     border-width: 2px 2px 2px 2px;
-    border-color: #fff;
     border-radius: 6px 6px 6px 6px;
-    box-shadow: 0px 0px 4px 0px rgb(0 0 0 / 29%);
-    padding: 8px 25px 8px 25px;
-}
-
-.btk-wp-slider .dashicons-download {
-    font-size: 16px;
-}
-
-.btk-text-white {
-    color: #fff !important;
-}
-
-.btk-wp-slider .btk-slider-overlay-img {
-    position: absolute;
-    bottom: -8px;
-    width: 25%;
-    left: 60%;
-}
-
-.btk-wp-slider .btk-slider-overlay-img img {
-    width: 100%;
-}
-
-.btk-wp-slider .btk-logo img {
-    width: 150px;
-}
-
-.btk-wp-slider .btk-btn {
-    display: inline-block;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.29);
+    padding: 10px 15px 10px 15px;
+    webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
     text-align: center;
-    text-decoration: none;
-    vertical-align: middle;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
-
-.btk-wp-slider .btk-btn-primary {
+.hero-btn-parent .download-btn {
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+.modal-download-btn {
+    color: #3177DB;
+    border-color: #3177DB;
+}
+.btk-secondary-btn{
     color: #fff;
-    background-color: #0d6efd;
-    border-color: #0d6efd;
+    background-color: #6c757d;
+    border-color: #6c757d;
 }
 
-.btk-wp-slider .btk-overlay {
+.hero-small-box {
     position: absolute;
-    top: 0;
-    left: 0;
-    clear: float;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
-    color: #ffffff;
+    right: 0;
+    bottom: -6px;
 }
-.btk-wp-slider .btk-slider-item{
-    height: 70vh;
+
+.hero-small-box img {
+    width: 400px;
 }
-@media screen and (max-width: 767px) {
-    .btk-wp-slider .btk-download-btn button ,
-    .btk-wp-slider .btk-download-btn a 
-    {
-        padding: 5px 10px 5px 10px;
+
+
+.right-content {
+    margin-left: 10px;
+}
+
+#btk-wp-hero .slick-prev:before,
+#btk-wp-hero .slick-next:before {
+    color: transparent;
+    background-image: url(../images/arrow-right.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 38px;
+    opacity: 1 !important;
+}
+
+#btk-wp-hero .slick-next:before {
+    background-image: url(../images/arrow-left.png);
+}
+
+#btk-wp-hero .slick-next {
+    top: 88%;
+    left: 47.5%;
+}
+
+#btk-wp-hero .slick-prev {
+    top: 88%;
+    right: 47.5%;
+    left: unset;
+    z-index: 100;
+}
+
+.hero-btn-parent .custom-btn:hover {
+    color: #FFFFFF;
+    background-color: #3177DB;
+    border-color: #3177DB;
+}
+
+.widget_btk_wp_hero_slider_widget p:first-child {
+    display: none;
+}
+
+.widget_btk_wp_hero_slider_widget p:last-child {
+    display: none;
+}
+
+@media screen and (max-width: 576px) {
+
+    #btk-wp-hero .btn-margin {
+        margin-left: 15px;
     }
-    .btk-wp-slider .btk-slider-title-button h1 {
-        font-size: 16px;
+
+    #btk-wp-hero .hero-content {
+        padding-left: 20px;
     }
-    .btk-wp-slider .btk-logo img {
-        width: 85px;
+}
+
+@media screen and (max-width: 1400px) {
+    #btk-wp-hero .slick-next {
+        top: 88%;
+        left: 47%;
     }
-    .btk-wp-slider .slick-prev{
-        left: 5px;
+
+    #btk-wp-hero .slick-prev {
+        top: 88%;
+        right: 47%;
     }
-    .btk-wp-slider .slick-next{
-        right: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+    #btk-wp-hero .slick-next {
+        top: 90%;
+        left: 46%;
     }
-    .btk-wp-slider .btk-slider-item{
-        height: 400px;
+
+    #btk-wp-hero .slick-prev {
+        top: 90%;
+        right: 46%;
     }
-    .btk-wp-slider .btk-slider-item img{
-        height: 100%;
+
+    #btk-wp-hero .hero-content .btk-wp-head-title {
+        font-size: 28px;
     }
-    .btk-wp-slider .btk-slider-overlay-img {
-        position: absolute;
-        bottom: -3px;
-        width: 59%;
+}
+
+@media screen and (max-width: 768px) {
+    #btk-wp-hero .slick-next {
+        top: 90%;
         left: 45%;
+    }
+
+    #btk-wp-hero .slick-prev {
+        top: 90%;
+        right: 45%;
+    }
+
+    .hero-child {
+        height: 850px;
+    }
+
+    .hero-small-box {
+        right: unset;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #btk-wp-hero .slick-next {
+        top: 90%;
+        left: 43%;
+    }
+
+    #btk-wp-hero .slick-prev {
+        top: 90%;
+        right: 43%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #btk-wp-hero .slick-next {
+        top: 95%;
+        left: 40%;
+    }
+
+    #btk-wp-hero .slick-prev {
+        top: 95%;
+        right: 40%;
     }
 }

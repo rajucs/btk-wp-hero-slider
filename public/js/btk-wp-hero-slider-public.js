@@ -65,8 +65,22 @@
 				// instead of a settings object
 			]
 		});
-		$('.btk-show-popup-form').on('click',function(){
+		$('.btk-show-popup-form').on('click', function () {
 			$('#btk-show-popup-form-modal').modal('show');
+		})
+		$('#btk-download-form').on('submit', function (e) {
+			e.preventDefault();  //stop the browser from following
+			var btkDownloadFile = $('#btk-downloaded-file').val();
+			// window.location.href = btkDownloadFile;
+			// window.open(btkDownloadFile , '_blank');
+			var link = document.createElement("a");
+			// If you don't know the name or want to use
+			// the webserver default set name = ''
+			link.setAttribute('download', 'Download Broucer');
+			link.href = btkDownloadFile;
+			document.body.appendChild(link);
+			link.click();
+
 		})
 	})
 

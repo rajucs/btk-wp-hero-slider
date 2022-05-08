@@ -70,6 +70,10 @@ endif;
                                                     <label for="btk-slider-title">Title</label>
                                                     <input type="text" name="btk_slider_title[]" class="form-control form-control-sm" id="btk-slider-title" value="<?php echo $slider->slider_title; ?>">
                                                 </div>
+                                                <div class="form-group">
+                                                    <label for="btk-slider-paragraph">Paragraph</label>
+                                                    <input type="text" name="btk_slider_paragraph[]" class="form-control form-control-sm" id="btk-slider-paragraph" value="<?php echo $slider->slider_paragraph; ?>">
+                                                </div>
                                                 <div class="form-group form-check">
                                                     <input type="checkbox" class="form-check-input" id="btk-show-download-btn" value="1" <?php echo ($slider->show_download_btn == 1) ? 'checked' : ''; ?> name="btk_show_download_btn[]">
                                                     <label class="form-check-label" for="btk-show-download-btn">Show Download Button.</label>
