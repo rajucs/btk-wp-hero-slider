@@ -65,6 +65,9 @@
 				// instead of a settings object
 			]
 		});
+		$('.btk-show-popup-form').on('click',function(){
+			$('#btk-show-popup-form-modal').modal('show');
+		})
 	})
 
 })(jQuery);

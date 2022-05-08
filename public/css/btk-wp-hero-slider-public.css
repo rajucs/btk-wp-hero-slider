@@ -49,7 +49,8 @@
     line-height: 1.2em;
 }
 
-.btk-wp-slider .btk-download-btn button {
+.btk-wp-slider .btk-download-btn button, 
+.btk-wp-slider .btk-download-btn a {
     font-family: "Raleway", Sans-serif;
     font-size: 14px;
     font-weight: bold;
@@ -127,7 +128,9 @@
     height: 70vh;
 }
 @media screen and (max-width: 767px) {
-    .btk-wp-slider .btk-download-btn button {
+    .btk-wp-slider .btk-download-btn button ,
+    .btk-wp-slider .btk-download-btn a 
+    {
         padding: 5px 10px 5px 10px;
     }
     .btk-wp-slider .btk-slider-title-button h1 {

@@ -209,6 +209,13 @@ class Btk_Wp_Hero_Slider_Admin
 	}
 	function btk_wp_hero_slider_save_post($post_id, $post, $update)
 	{
+		if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+			return;
+		}
+		if (defined('DOING_AJAX') && DOING_AJAX) { /* it's an Ajax call */
+			return;
+		}
+
 		if ($post->post_type == 'bk-hero-slider') {
 			$btk_slider_metas = [];
 			// for ($total = 0; $total <= $total_slider; $total++) {
@@ -218,13 +225,20 @@ class Btk_Wp_Hero_Slider_Admin
 				} else {
 					$show_popup_form = 0;
 				}
+				if ($_POST['btk_show_site_logo'][$k]) {
+					$show_site_logo  = $_POST['btk_show_site_logo'][$k];
+				} else {
+					$show_site_logo = 0;
+				}
 				$btk_slider_metas[] = array(
 					'slider_image' => $_POST['btk_slider_images'][$k],
 					'slider_overlay_image' => $_POST['btk_overlay_front_images'][$k],
 					'slider_title' => $_POST['btk_slider_title'][$k],
+					'show_download_btn' => $_POST['btk_show_download_btn'][$k],
 					'slider_btn_text' => $_POST['btk_slider_btn_text'][$k],
 					'slider_btn_dl_link' => $_POST['btk_slider_btn_downloadlink'][$k],
 					'show_popup_form' => $show_popup_form,
+					'show_site_logo' => $show_site_logo,
 				);
 			}
 
@@ -241,7 +255,7 @@ class Btk_Wp_Hero_Slider_Admin
 		register_widget('btk_wp_hero_slider_widget');
 	}
 
-		// Add the custom columns to the book post type:
+	// Add the custom columns to the book post type:
 	public function set_new_btk_hero_slider_post_custom_column($columns)
 	{
 		unset($columns['date']);
@@ -257,7 +271,7 @@ class Btk_Wp_Hero_Slider_Admin
 	{
 		switch ($column) {
 			case 'shortcode':
-				echo '[btk-hero-slider sliderid="'.$post_id.'"]';
+				echo '[btk-hero-slider sliderid="' . $post_id . '"]';
 				break;
 		}
 	}

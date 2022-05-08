@@ -21,6 +21,8 @@ endif;
                     if (!empty($sliders)) :
                         $slider_loop = 1;
                         foreach ($sliders as $slider) :
+                            // var_dump($slider);
+                            // exit();
                     ?>
                             <div class="card mt-2 p-0 m-0">
                                 <div class="card-header p-0 d-flex justify-content-between" id="btk-heading-<?php echo $slider_loop; ?>">
@@ -68,6 +70,10 @@ endif;
                                                     <label for="btk-slider-title">Title</label>
                                                     <input type="text" name="btk_slider_title[]" class="form-control form-control-sm" id="btk-slider-title" value="<?php echo $slider->slider_title; ?>">
                                                 </div>
+                                                <div class="form-group form-check">
+                                                    <input type="checkbox" class="form-check-input" id="btk-show-download-btn" value="1" <?php echo ($slider->show_download_btn == 1) ? 'checked' : ''; ?> name="btk_show_download_btn[]">
+                                                    <label class="form-check-label" for="btk-show-download-btn">Show Download Button.</label>
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="btk-slider-btn-text">Button Text</label>
                                                     <input type="text" name="btk_slider_btn_text[]" class="form-control form-control-sm" id="btk-slider-btn-text" placeholder="text" value="<?php echo $slider->slider_btn_text; ?>">
@@ -80,6 +86,10 @@ endif;
                                                 <div class="form-group form-check">
                                                     <input type="checkbox" class="form-check-input" id="btk-show-popup-form" value="1" <?php echo ($slider->show_popup_form == 1) ? 'checked' : ''; ?> name="btk_show_popup_form[]">
                                                     <label class="form-check-label" for="btk-show-popup-form">Show popup form before downloading.</label>
+                                                </div>
+                                                <div class="form-group form-check">
+                                                    <input type="checkbox" class="form-check-input" id="btk-show-site-logo" value="1" <?php echo ($slider->show_site_logo == 1) ? 'checked' : ''; ?> name="btk_show_site_logo[]">
+                                                    <label class="form-check-label" for="btk-show-site-logo">Show site logo.</label>
                                                 </div>
                                             </div>
                                         </div>
