@@ -64,6 +64,19 @@ endif;
                                                         </div>
                                                     </label>
                                                 </div>
+                                                <div>
+                                                    <p class="mb-0">Site Logo</p>
+                                                    <label class="dragBox btk_site_logo-<?php echo $slider_loop; ?>" for="btk_site_logo-<?php echo $slider_loop; ?>">
+                                                        upload image
+                                                        <input type="file" class="btk_site_logo" data-serial='<?php echo $slider_loop; ?>' id="btk_site_logo-<?php echo $slider_loop; ?>" data-name="btk_site_logo[]" value="<?php echo $slider->site_logo; ?>" />
+                                                        <div class="btk-hidden-field">
+                                                            <input type="hidden" name="btk_site_logo[]" value="<?php echo $slider->site_logo; ?>">
+                                                        </div>
+                                                        <div id="preview">
+                                                            <img src="<?php echo wp_get_attachment_image_url((int)$slider->site_logo, 'full'); ?>" class="btk-preview-img">
+                                                        </div>
+                                                    </label>
+                                                </div>
                                             </div>
                                             <div class="col-md-9 col-12">
                                                 <div class="form-group">
@@ -93,7 +106,7 @@ endif;
                                                 </div>
                                                 <div class="form-group form-check">
                                                     <input type="checkbox" class="form-check-input" id="btk-show-site-logo" value="1" <?php echo ($slider->show_site_logo == 1) ? 'checked' : ''; ?> name="btk_show_site_logo[]">
-                                                    <label class="form-check-label" for="btk-show-site-logo">Show site logo.</label>
+                                                    <label class="form-check-label" for="btk-show-site-logo">Show logo.</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -169,6 +182,34 @@ endif;
                 $('.btk-overlay-front-image-upload-' + thisBtnSerial + ' .btk-hidden-field').html('<input type="hidden" name="' + nameField + '" value="' + attachment.id + '">');
                 // Restore the main post ID
                 $('.btk-overlay-front-image-upload-' + thisBtnSerial + ' #preview').html('<img src="' + attachment.url + '" class="btk-preview-img">')
+                wp.media.model.settings.post.id = wp_media_post_id;
+            });
+            // Finally, open the modal
+            file_frame.open();
+        });
+        jQuery(document).on('click', '.btk_site_logo', function(event) {
+            event.preventDefault();
+            var thisBtnSerial = $(this).data('serial')
+            var nameField = $(this).data('name')
+            // Create the media frame.
+            file_frame = wp.media.frames.file_frame = wp.media({
+                title: 'Select images to upload',
+                button: {
+                    text: 'Add',
+                },
+                multiple: false // Set to true to allow multiple files to be selected
+            });
+
+            // When an image is selected, run a callback.
+            file_frame.on('select', function() {
+                // We set multiple to false so only get one image from the uploader
+                attachment = file_frame.state().get('selection').first().toJSON();
+                // Do something with attachment.id and/or attachment.url here
+                // $('#image-preview').attr('src', attachment.url).css('width', '80px');
+                console.log('.btk_site_logo-' + thisBtnSerial + ' #preview')
+                $('.btk_site_logo-' + thisBtnSerial + ' .btk-hidden-field').html('<input type="hidden" name="' + nameField + '" value="' + attachment.id + '">');
+                // Restore the main post ID
+                $('.btk_site_logo-' + thisBtnSerial + ' #preview').html('<img src="' + attachment.url + '" class="btk-preview-img">')
                 wp.media.model.settings.post.id = wp_media_post_id;
             });
             // Finally, open the modal

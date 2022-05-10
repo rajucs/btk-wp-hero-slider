@@ -66,11 +66,28 @@
 										<div id="preview"></div>
 									</label>
 								</div>
+								<div>
+									<p class="mb-0">Logo</p>
+									<label class="dragBox btk_site_logo-` + newSlider + `" for="btk_site_logo-` + newSlider + `">
+										upload image
+										<input type="file" class="btk_site_logo" data-serial='` + newSlider + `' id="btk_site_logo-` + newSlider + `" data-name="btk_site_logo[]" />
+										<div class="btk-hidden-field"></div>
+										<div id="preview"></div>
+									</label>
+								</div>
 							</div>
 							<div class="col-md-9 col-12">
 								<div class="form-group">
 									<label for="btk-slider-title">Title</label>
 									<input type="text" name="btk_slider_title[]" class="form-control form-control-sm" id="btk-slider-title" placeholder="Title">
+								</div>
+								<div class="form-group">
+									<label for="btk-slider-paragraph">Paragraph</label>
+									<input type="text" name="btk_slider_paragraph[]" class="form-control form-control-sm" id="btk-slider-paragraph">
+								</div>
+								<div class="form-group form-check">
+									<input type="checkbox" class="form-check-input" id="btk-show-download-btn" value="1" name="btk_show_download_btn[]">
+									<label class="form-check-label" for="btk-show-download-btn">Show Download Button.</label>
 								</div>
 								<div class="form-group">
 									<label for="btk-slider-btn-text">Button Text</label>
@@ -83,6 +100,10 @@
 								<div class="form-group form-check">
 									<input type="checkbox" class="form-check-input" id="btk-show-popup-form" value="1" name="btk_show_popup_form[]>
 									<label class="form-check-label" for="btk-show-popup-form">Show popup form before downloading.</label>
+								</div>
+								<div class="form-group form-check">
+									<input type="checkbox" class="form-check-input" id="btk-show-site-logo" value="1" name="btk_show_site_logo[]">
+									<label class="form-check-label" for="btk-show-site-logo">Show logo.</label>
 								</div>
 							</div>
 						</div>

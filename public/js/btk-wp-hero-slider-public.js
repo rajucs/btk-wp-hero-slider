@@ -31,9 +31,9 @@
 	$(document).ready(function () {
 		$('.btk-hero-slider').slick({
 			dots: true,
-			// autoplay: true,
+			autoplay: true,
 			infinite: false,
-			speed: 300,
+			speed: 3000,
 			slidesToShow: 1,
 			slidesToScroll: 1,
 			responsive: [
@@ -66,22 +66,80 @@
 			]
 		});
 		$('.btk-show-popup-form').on('click', function () {
+			var downloadFile = $(this).data('download-file');
+			$('#btk-show-popup-form-modal form #btk-download-file').html(`
+				<input type="hidden" value="`+ downloadFile + `" id="btk-downloaded-file">
+			`)
 			$('#btk-show-popup-form-modal').modal('show');
 		})
+		var input = $('.validate-input .btk-input-field');
+
 		$('#btk-download-form').on('submit', function (e) {
 			e.preventDefault();  //stop the browser from following
-			var btkDownloadFile = $('#btk-downloaded-file').val();
-			// window.location.href = btkDownloadFile;
-			// window.open(btkDownloadFile , '_blank');
-			var link = document.createElement("a");
-			// If you don't know the name or want to use
-			// the webserver default set name = ''
-			link.setAttribute('download', 'Download Broucer');
-			link.href = btkDownloadFile;
-			document.body.appendChild(link);
-			link.click();
+
+			var check = true;
+
+			for (var i = 0; i < input.length; i++) {
+				if (btkFormValidate(input[i]) == false) {
+					btkShowValidate(input[i]);
+					check = false;
+				}
+			}
+
+			if(check){
+
+				var btkDownloadFile = $('#btk-downloaded-file').val();
+				// window.location.href = btkDownloadFile;
+				// window.open(btkDownloadFile , '_blank');
+				var link = document.createElement("a");
+				// If you don't know the name or want to use
+				// the webserver default set name = ''
+				link.setAttribute('download', 'Download Broucer');
+				link.href = btkDownloadFile;
+				document.body.appendChild(link);
+				link.click();
+				btkHideValidate(input)
+			}
 
 		})
+
+
+
+		/*==================================================================
+ [ Validate ]*/
+
+		$('.validate-form .btk-input-field').each(function () {
+			$(this).focus(function () {
+				btkHideValidate(this);
+			});
+		});
+
+		function btkFormValidate(input) {
+			if ($(input).attr('type') == 'email' || $(input).attr('name') == 'email') {
+				if ($(input).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+					return false;
+				}
+			}
+			else {
+				if ($(input).val().trim() == '') {
+					return false;
+				}
+			}
+		}
+
+		function btkShowValidate(input) {
+			var thisAlert = $(input).parent();
+
+			$(thisAlert).addClass('alert-validate');
+		}
+
+		function btkHideValidate(input) {
+			var thisAlert = $(input).parent();
+
+			$(thisAlert).removeClass('alert-validate');
+		}
+
+
 	})
 
 })(jQuery);

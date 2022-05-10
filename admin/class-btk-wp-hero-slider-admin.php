@@ -230,12 +230,18 @@ class Btk_Wp_Hero_Slider_Admin
 				} else {
 					$show_site_logo = 0;
 				}
+				if ($_POST['btk_show_download_btn'][$k]) {
+					$btk_show_download_btn  = $_POST['btk_show_download_btn'][$k];
+				} else {
+					$btk_show_download_btn = 0;
+				}
 				$btk_slider_metas[] = array(
 					'slider_image' => $_POST['btk_slider_images'][$k],
 					'slider_overlay_image' => $_POST['btk_overlay_front_images'][$k],
+					'site_logo' => $_POST['btk_site_logo'][$k],
 					'slider_title' => $_POST['btk_slider_title'][$k],
 					'slider_paragraph' => $_POST['btk_slider_paragraph'][$k],
-					'show_download_btn' => $_POST['btk_show_download_btn'][$k],
+					'show_download_btn' => $btk_show_download_btn,
 					'slider_btn_text' => $_POST['btk_slider_btn_text'][$k],
 					'slider_btn_dl_link' => $_POST['btk_slider_btn_downloadlink'][$k],
 					'show_popup_form' => $show_popup_form,
