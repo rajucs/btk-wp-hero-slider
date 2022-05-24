@@ -190,6 +190,10 @@ class Btk_Wp_Hero_Slider
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
 		$this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
 		$this->loader->add_shortcode('btk-hero-slider', $plugin_public, 'btk_wp_hero_slider');
+		$this->loader->add_action('wp_footer', $plugin_public, 'btk_wp_footer');
+		$this->loader->add_action('wp_ajax_btk_wp_file_downloaded', $plugin_public, 'btk_wp_file_downloaded');
+		$this->loader->add_action('wp_ajax_nopriv_btk_wp_file_downloaded', $plugin_public, 'btk_wp_file_downloaded');
+		$this->loader->add_filter('wp_mail_content_type', $plugin_public, 'btk_mail_content');
 	}
 
 	/**

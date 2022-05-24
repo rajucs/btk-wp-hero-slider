@@ -108,7 +108,16 @@ class Btk_Wp_Hero_Slider_Public
 
 		wp_enqueue_script($this->plugin_name . '-slick-min-js', plugin_dir_url(plugin_dir_path(__FILE__)) . 'assets/slick/slick.min.js', array('jquery'), $this->version, false);
 
-		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/btk-wp-hero-slider-public.js', array('jquery'), $this->version, false);
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/btk-wp-hero-slider-public.js', array('jquery'), $this->version, true);
+
+		wp_localize_script(
+			$this->plugin_name,
+			'btk_wp_obj',
+			array(
+				'ajax_url' => admin_url('admin-ajax.php'),
+				'nonce' => wp_create_nonce('ajax-nonce')
+			)
+		);
 	}
 
 	public function btk_wp_hero_slider($atts)
@@ -118,5 +127,40 @@ class Btk_Wp_Hero_Slider_Public
 		$content = ob_get_contents();
 		ob_end_clean();
 		return $content;
+	}
+	public function btk_wp_footer()
+	{
+		include_once('partials/btk-wp-footer.php');
+	}
+	public function btk_wp_file_downloaded()
+	{
+		error_reporting(0);
+		if (wp_verify_nonce($_POST['security'], 'ajax-nonce')) {
+			$buildingName = $_POST['btkBuildingTitle'];
+			$formData = $_POST['formData'];
+			parse_str($formData, $form_data);
+			$name = $form_data['name'];
+			$email = $form_data['email'];
+			$phone = $form_data['phone'];
+			$to = get_option('admin_email');
+			$subject = 'Query For ' . $buildingName;
+			$body = "
+			<p>Hello Anadelaida,</p>
+			<p>Name: $name</p>
+			<p>Name: $email</p>
+			<p>Name: $phone</p>
+			";
+			$headers = array('Content-Type: text/html; charset=UTF-8');
+
+			wp_mail($to, $subject, $body, $headers);
+			echo 'okay';
+		} else {
+			echo "are you sure?";
+		}
+		wp_die();
+	}
+	function btk_mail_content()
+	{
+		return "text/html";
 	}
 }

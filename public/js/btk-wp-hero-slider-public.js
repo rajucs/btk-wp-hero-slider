@@ -65,8 +65,10 @@
 				// instead of a settings object
 			]
 		});
+		var btkBuildingTitle;
 		$('.btk-show-popup-form').on('click', function () {
 			var downloadFile = $(this).data('download-file');
+			btkBuildingTitle = $(this).data('building-title');
 			$('#btk-show-popup-form-modal form #btk-download-file').html(`
 				<input type="hidden" value="`+ downloadFile + `" id="btk-downloaded-file">
 			`)
@@ -76,9 +78,8 @@
 
 		$('#btk-download-form').on('submit', function (e) {
 			e.preventDefault();  //stop the browser from following
-
 			var check = true;
-
+			var formData = $(this).serialize();
 			for (var i = 0; i < input.length; i++) {
 				if (btkFormValidate(input[i]) == false) {
 					btkShowValidate(input[i]);
@@ -86,7 +87,7 @@
 				}
 			}
 
-			if(check){
+			if (check) {
 
 				var btkDownloadFile = $('#btk-downloaded-file').val();
 				// window.location.href = btkDownloadFile;
@@ -99,6 +100,23 @@
 				document.body.appendChild(link);
 				link.click();
 				btkHideValidate(input)
+				jQuery.ajax({
+					url: btk_wp_obj.ajax_url,
+					type: "POST",
+					data: {
+						action: "btk_wp_file_downloaded",
+						btkBuildingTitle: btkBuildingTitle,
+						formData: formData,
+						security: btk_wp_obj.nonce,
+					},
+					success: function (data) {
+						console.log(data)
+					},
+					error: function (xhr, status, error) {
+						var errorMessage = xhr.status + ": " + xhr.statusText;
+						alert("Error - " + errorMessage);
+					},
+				})
 			}
 
 		})
