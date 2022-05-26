@@ -178,10 +178,15 @@
 .btk-logo {
     position: absolute;
     top: 15px;
+    right: -5%;
+}
+.btk-signature {
+    position: absolute;
+    top: 15px;
     left: -5%;
 }
 
-.btk-logo img {
+.btk-logo img ,.btk-signature img{
     width: 90px;
 }
 
@@ -269,9 +274,9 @@
     border-color: #3177DB;
 }
 
-.widget_btk_wp_hero_slider_widget p:first-child {
+/* .widget_btk_wp_hero_slider_widget p:first-child {
     display: none;
-}
+} */
 
 /* .widget_btk_wp_hero_slider_widget p:last-child {
     display: none;

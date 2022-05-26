@@ -20,6 +20,11 @@ if (get_post_status((int)$atts['sliderid']) == 'publish') :
                                 <div class="row align-items-start align-items-md-center h-100">
                                     <div class="btk-col-md-6">
                                         <div class="hero-content">
+                                            <?php if ($slider->btk_owner_signature) : ?>
+                                                <div class="btk-signature">
+                                                    <img src="<?php echo (!empty($slider->btk_owner_signature)) ? wp_get_attachment_image_url((int)$slider->btk_owner_signature, 'full') : ''; ?>" alt="">
+                                                </div>
+                                            <?php endif; ?>
                                             <?php if ($slider->show_site_logo) : ?>
                                                 <div class="btk-logo">
                                                     <img src="<?php echo (!empty($slider->site_logo)) ? wp_get_attachment_image_url((int)$slider->site_logo, 'full') : $site_logo_img_url; ?>" alt="">

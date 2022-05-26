@@ -34,7 +34,7 @@ endif;
                                         <button class="btk-wp-remove-slider btn" type="button"><span class="text-danger dashicons dashicons-trash"></span></button>
                                     </div>
                                 </div>
-                                <div id="collapse-btk-slider-<?php echo $slider_loop; ?>" class="collapse <?php echo ($slider_loop==1)? 'show':''; ?>" aria-labelledby="btk-heading-<?php echo $slider_loop; ?>" data-parent="#btk-wp-hero-slider-accordion">
+                                <div id="collapse-btk-slider-<?php echo $slider_loop; ?>" class="collapse <?php echo ($slider_loop == 1) ? 'show' : ''; ?>" aria-labelledby="btk-heading-<?php echo $slider_loop; ?>" data-parent="#btk-wp-hero-slider-accordion">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-3 col-12">
@@ -64,16 +64,25 @@ endif;
                                                         </div>
                                                     </label>
                                                 </div>
-                                                <div>
+                                                <div class="btk-logo-signature">
                                                     <p class="mb-0">Site Logo</p>
                                                     <label class="dragBox btk_site_logo-<?php echo $slider_loop; ?>" for="btk_site_logo-<?php echo $slider_loop; ?>">
                                                         upload image
                                                         <input type="file" class="btk_site_logo" data-serial='<?php echo $slider_loop; ?>' id="btk_site_logo-<?php echo $slider_loop; ?>" data-name="btk_site_logo[]" value="<?php echo $slider->site_logo; ?>" />
-                                                        <div class="btk-hidden-field">
+                                                        <div class="preview">
                                                             <input type="hidden" name="btk_site_logo[]" value="<?php echo $slider->site_logo; ?>">
-                                                        </div>
-                                                        <div id="preview">
                                                             <img src="<?php echo wp_get_attachment_image_url((int)$slider->site_logo, 'full'); ?>" class="btk-preview-img">
+                                                        </div>
+                                                    </label>
+                                                </div>
+                                                <div class="btk-logo-signature">
+                                                    <p class="mb-0">Signature</p>
+                                                    <label class="dragBox btk_site_logo-<?php echo $slider_loop; ?>" for="btk_owner_signature-<?php echo $slider_loop; ?>">
+                                                        upload signature
+                                                        <input type="file" class="btk_site_logo" data-serial='<?php echo $slider_loop; ?>' id="btk_owner_signature-<?php echo $slider_loop; ?>" data-name="btk_owner_signature[]" value="<?php echo $slider->btk_owner_signature; ?>" />
+                                                        <div class="preview">
+                                                            <input type="hidden" name="btk_owner_signature[]" value="<?php echo $slider->btk_owner_signature; ?>">
+                                                            <img src="<?php echo wp_get_attachment_image_url((int)$slider->btk_owner_signature, 'full'); ?>" class="btk-preview-img">
                                                         </div>
                                                     </label>
                                                 </div>
@@ -133,6 +142,7 @@ endif;
         var set_to_post_id = <?php echo $post->ID; ?>; // Set this
         jQuery(document).on('click', '.btk-slider-image-upload', function(event) {
             event.preventDefault();
+            file_frame = '';
             var thisBtnSerial = $(this).data('serial')
             var nameField = $(this).data('name')
             // Create the media frame.
@@ -161,6 +171,7 @@ endif;
         });
         jQuery(document).on('click', '.btk-overlay-front-image-upload', function(event) {
             event.preventDefault();
+            file_frame = '';
             var thisBtnSerial = $(this).data('serial')
             var nameField = $(this).data('name')
             // Create the media frame.
@@ -189,6 +200,8 @@ endif;
         });
         jQuery(document).on('click', '.btk_site_logo', function(event) {
             event.preventDefault();
+            file_frame = '';
+            var thisOBject = jQuery(this);
             var thisBtnSerial = $(this).data('serial')
             var nameField = $(this).data('name')
             // Create the media frame.
@@ -204,12 +217,11 @@ endif;
             file_frame.on('select', function() {
                 // We set multiple to false so only get one image from the uploader
                 attachment = file_frame.state().get('selection').first().toJSON();
-                // Do something with attachment.id and/or attachment.url here
-                // $('#image-preview').attr('src', attachment.url).css('width', '80px');
-                console.log('.btk_site_logo-' + thisBtnSerial + ' #preview')
-                $('.btk_site_logo-' + thisBtnSerial + ' .btk-hidden-field').html('<input type="hidden" name="' + nameField + '" value="' + attachment.id + '">');
+                
                 // Restore the main post ID
-                $('.btk_site_logo-' + thisBtnSerial + ' #preview').html('<img src="' + attachment.url + '" class="btk-preview-img">')
+                console.log(thisOBject.closest('.btk-logo-signature').find('.preview'))
+                thisOBject.closest('.btk-logo-signature').find('.preview').html('<img src="' + attachment.url + '" class="btk-preview-img"><input type="hidden" name="' + nameField + '" value="' + attachment.id + '">')
+                
                 wp.media.model.settings.post.id = wp_media_post_id;
             });
             // Finally, open the modal

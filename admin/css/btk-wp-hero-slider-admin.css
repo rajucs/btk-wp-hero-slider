@@ -37,7 +37,8 @@
     width: 100%;
     height: 90px;
 }
-.bootstrap .dragBox #preview {
+.bootstrap .dragBox #preview ,
+.bootstrap .dragBox .preview {
     position: absolute;
     top: 0;
 }

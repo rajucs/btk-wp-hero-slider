@@ -239,6 +239,7 @@ class Btk_Wp_Hero_Slider_Admin
 					'slider_image' => $_POST['btk_slider_images'][$k],
 					'slider_overlay_image' => $_POST['btk_overlay_front_images'][$k],
 					'site_logo' => $_POST['btk_site_logo'][$k],
+					'btk_owner_signature' => $_POST['btk_owner_signature'][$k],
 					'slider_title' => $_POST['btk_slider_title'][$k],
 					'slider_paragraph' => $_POST['btk_slider_paragraph'][$k],
 					'show_download_btn' => $btk_show_download_btn,
