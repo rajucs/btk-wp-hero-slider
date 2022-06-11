@@ -61,7 +61,7 @@ class BTK_wp_hero_slider_widget extends WP_Widget
 
         // Display text field
         if ($btk_hero_shortcode) {
-            echo '<p>' . $btk_hero_shortcode . '</p>';
+            echo $btk_hero_shortcode;
         }
 
         echo '</div>';

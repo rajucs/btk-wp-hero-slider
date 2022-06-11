@@ -123,8 +123,7 @@
 
 
 
-		/*==================================================================
- [ Validate ]*/
+		/*[ Validate ]*/
 
 		$('.validate-form .btk-input-field').each(function () {
 			$(this).focus(function () {

@@ -106,6 +106,19 @@ class Btk_Wp_Hero_Slider_Admin
 		wp_enqueue_script($this->plugin_name . '-sweat-alert', '//cdn.jsdelivr.net/npm/sweetalert2@11', array('jquery'), $this->version, false);
 
 		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/btk-wp-hero-slider-admin.js', array('jquery'), $this->version, false);
+
+		wp_localize_script($this->plugin_name, 'bk_hero_slider_wp_plugin', array(
+			'ajax_url' =>   admin_url('admin-ajax.php'),
+			'nonce' => wp_create_nonce('bk_hero_slider_ajax_nonce')
+		));
+	}
+	public function btk_admin_menu()
+	{
+		add_submenu_page('edit.php?post_type=bk-hero-slider', 'Settings', 'Settings', 'manage_options', 'bk-hero-slider-settings', array($this, 'bk_hero_slider_settings'),);
+	}
+	public function bk_hero_slider_settings()
+	{
+		include('partials/bk-hero-slider-settings.php');
 	}
 
 	public function bk_wp_hero_slider_post_types()
@@ -282,5 +295,16 @@ class Btk_Wp_Hero_Slider_Admin
 				echo '[btk-hero-slider sliderid="' . $post_id . '"]';
 				break;
 		}
+	}
+	//global settings for the plugin
+	public function bk_hero_slider_global_settigns()
+	{
+		parse_str($_POST['bk_form_data'], $bk_form_data);
+		$global_settings = [
+			'bk_global_btn_bg' => $bk_form_data['bk_global_btn_bg'],
+			'bk_global_btn_color' => $bk_form_data['bk_global_btn_color'],
+			'bk_contact_form_bg' => $bk_form_data['bk_building_contact_form_bg'],
+		];
+		update_option('bk_hero_slider_global_settings', json_encode($global_settings, JSON_FORCE_OBJECT));
 	}
 }

@@ -186,7 +186,10 @@
     left: -5%;
 }
 
-.btk-logo img ,.btk-signature img{
+.btk-signature img{
+    width: 150px;
+}
+.btk-logo img {
     width: 90px;
 }
 
@@ -329,6 +332,10 @@
 
     .btk-logo {
         left: inherit;
+        right: 4%;
+    }
+    .btk-signature {
+        left: 4%;
     }
 
     #btk-wp-hero .slick-prev {
@@ -663,4 +670,5 @@ textarea.btk-input-field {
         opacity: 1;
     }
 }
+
 /* modal contact form end */

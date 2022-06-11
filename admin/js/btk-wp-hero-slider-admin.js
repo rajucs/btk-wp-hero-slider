@@ -150,6 +150,32 @@
 				}
 			})
 		})
+
+		$('#bk-hero-slider-global-settings').on('submit', function (e) {
+			e.preventDefault();
+			var bkFormData = $(this).serialize();
+			Swal.showLoading()
+			jQuery.ajax({
+				url: bk_hero_slider_wp_plugin.ajax_url,
+				type: 'POST',
+				data: {
+					action: 'bk_hero_slider_global_settigns',
+					bk_form_data: bkFormData,
+					security: bk_hero_slider_wp_plugin.bk_hero_slider_ajax_nonce,
+				},
+				success: function (data) {
+					console.log(data)
+					swal.close();
+					Swal.fire({
+						position: 'top-end',
+						icon: 'success',
+						title: 'Settings has been saved',
+						showConfirmButton: false,
+						timer: 1500
+					})
+				}
+			})
+		});
 	})
 
 })(jQuery);

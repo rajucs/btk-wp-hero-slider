@@ -173,6 +173,9 @@ class Btk_Wp_Hero_Slider
 		// manage clue table columns
 		$this->loader->add_filter('manage_bk-hero-slider_posts_columns', $plugin_admin, 'set_new_btk_hero_slider_post_custom_column');
 		$this->loader->add_action('manage_bk-hero-slider_posts_custom_column', $plugin_admin, 'btk_hero_slider_post_custom_column_value', 10, 2);
+		$this->loader->add_action('admin_menu', $plugin_admin, 'btk_admin_menu');
+		$this->loader->add_action('wp_ajax_bk_hero_slider_global_settigns', $plugin_admin, 'bk_hero_slider_global_settigns');
+
 	}
 
 	/**
