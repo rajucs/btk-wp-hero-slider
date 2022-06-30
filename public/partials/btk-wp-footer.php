@@ -12,6 +12,7 @@
                                     <span class="btk-form-download-form-title">
                                         Fill up form to Download file.
                                     </span>
+                                    <input type="hidden" id="btk-downloaded-file">
                                     <div class="wrap-btk-input-field validate-input" data-validate="Please enter your name">
                                         <input class="btk-input-field" type="text" name="name" placeholder="Full Name">
                                         <span class="focus-btk-input-field"></span>

@@ -13,13 +13,13 @@ if (get_post_status((int)$atts['sliderid']) == 'publish') :
 
     if (!empty($sliders)) :
 ?>
-<style>
-    .download-btn,
-    .btk-form-download-form-btn {
-        background-color: <?php echo ($bk_global_settings->bk_global_btn_bg != '') ? $bk_global_settings->bk_global_btn_bg : 'green'; ?>;
-        color: <?php echo ($bk_global_settings->bk_global_btn_color != '') ? $bk_global_settings->bk_global_btn_color : 'white'; ?>;
-    }
-</style>
+        <style>
+            .download-btn,
+            .btk-form-download-form-btn {
+                background-color: <?php echo ($bk_global_settings->bk_global_btn_bg != '') ? $bk_global_settings->bk_global_btn_bg : 'green'; ?>;
+                color: <?php echo ($bk_global_settings->bk_global_btn_color != '') ? $bk_global_settings->bk_global_btn_color : 'white'; ?>;
+            }
+        </style>
         <section id="btk-wp-hero" class="btk-wp-slider">
             <div class="btk-hero-slider">
                 <?php foreach ($sliders as $slider) : ?>
@@ -49,8 +49,6 @@ if (get_post_status((int)$atts['sliderid']) == 'publish') :
                                                 <div class="hero-btn-parent">
                                                     <?php if ($slider->show_popup_form) : ?>
                                                         <button type="button" class="btk-btn download-btn btk-show-popup-form" data-download-file="<?php echo wp_get_attachment_url($slider->slider_btn_dl_link); ?>" data-building-title="<?php echo $slider->slider_title; ?>"><i class="fa fa-download"></i><?php echo $slider->slider_btn_text; ?></button>
-                                                    <?php else : ?>
-                                                        <a href="<?php echo wp_get_attachment_url($slider->slider_btn_dl_link); ?>" class="download-btn" download="Building Broucher"><?php echo $slider->slider_btn_text; ?></a>
                                                     <?php endif; ?>
                                                 </div>
                                             <?php endif; ?>

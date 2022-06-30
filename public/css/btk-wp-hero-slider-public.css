@@ -125,10 +125,10 @@
     height: 85vh;
 }
 
-/* #btk-wp-hero .hero-content {
-    padding-top: 210px;
-    padding-bottom: 210px;
-} */
+#btk-wp-hero .hero-content {
+    background-color: rgba(0,0,0,.4);
+    padding: 10px;
+}
 
 #btk-wp-hero .hero-content h1 {
     font-size: 30px;

@@ -153,6 +153,9 @@ class Btk_Wp_Hero_Slider_Public
 			$headers = array('Content-Type: text/html; charset=UTF-8');
 
 			wp_mail($to, $subject, $body, $headers);
+			$url = site_url();
+			$parse = parse_url($url);
+			setcookie("alreadySubscribe", true, '', "/", $parse['host']);
 			echo 'okay';
 		} else {
 			echo "are you sure?";

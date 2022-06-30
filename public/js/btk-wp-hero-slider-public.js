@@ -65,15 +65,46 @@
 				// instead of a settings object
 			]
 		});
+
+		function getCookie(name) {
+			var dc = document.cookie;
+			var prefix = name + "=";
+			var begin = dc.indexOf("; " + prefix);
+			if (begin == -1) {
+				begin = dc.indexOf(prefix);
+				if (begin != 0) return null;
+			}
+			else {
+				begin += 2;
+				var end = document.cookie.indexOf(";", begin);
+				if (end == -1) {
+					end = dc.length;
+				}
+			}
+			// because unescape has been deprecated, replaced with decodeURI
+			//return unescape(dc.substring(begin + prefix.length, end));
+			return decodeURI(dc.substring(begin + prefix.length, end));
+		}
+		var hideshowForm = getCookie("alreadySubscribe");
 		var btkBuildingTitle;
+		var downloadFile;
 		$('.btk-show-popup-form').on('click', function () {
-			var downloadFile = $(this).data('download-file');
+			downloadFile = $(this).data('download-file');
 			btkBuildingTitle = $(this).data('building-title');
-			$('#btk-show-popup-form-modal form #btk-download-file').html(`
-				<input type="hidden" value="`+ downloadFile + `" id="btk-downloaded-file">
-			`)
-			$('#btk-show-popup-form-modal').modal('show');
+			$('#btk-form-download-form #btk-downloaded-file').val(downloadFile)
+			if (hideshowForm) {
+				var link = document.createElement("a");
+				// If you don't know the name or want to use
+				// the webserver default set name = ''
+				link.setAttribute('download', 'Download Broucer');
+				link.href = downloadFile;
+				document.body.appendChild(link);
+				link.click();
+			} else {
+				$('#btk-show-popup-form-modal').modal('show');
+			}
 		})
+
 		var input = $('.validate-input .btk-input-field');
 
 		$('#btk-download-form').on('submit', function (e) {
